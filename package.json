@@ -1,0 +1,23 @@
+{
+  "name": "astron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sky-Genesis-Enterprise/astron.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sky-Genesis-Enterprise/astron/issues"
+  },
+  "homepage": "https://github.com/Sky-Genesis-Enterprise/astron#readme",
+  "dependencies": {
+    "discord.js": "^14.19.3"
+  }
+}
