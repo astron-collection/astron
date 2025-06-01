@@ -19,27 +19,35 @@ const client = new Client({
     ],
 });
 
-function updatePresence(client) {
-    const guildCount = client.guilds.cache.size;
-    const userCount = client.guilds.cache.reduce((acc, guild) => acc + (guild.memberCount || 0), 0);
+function startPresenceCycle(client) {
+    let toggle = true;
 
-    client.user.setPresence({
-        activities: [
-            {
-                name: `streaming ${guildCount} servers and ${userCount} users`,
-                type: ActivityType.Streaming,
-                url: "https://www.youtube.com/watch?v=jfKfPfyJRdk" // Obligatoire pour Streaming
-            }
-        ],
-        status: "online",
-    });
+    setInterval(() => {
+        const guildCount = client.guilds.cache.size;
+        const userCount = client.guilds.cache.reduce((acc, guild) => acc + (guild.memberCount || 0), 0);
+
+        const presenceText = toggle
+            ? `${guildCount} guild`
+            : `${userCount.toLocaleString()} users`; // formate avec virgules
+
+        client.user.setPresence({
+            activities: [
+                {
+                    name: presenceText,
+                    type: ActivityType.Streaming,
+                    url: "https://www.youtube.com/watch?v=jfKfPfyJRdk"
+                }
+            ],
+            status: "online",
+        });
+
+        toggle = !toggle;
+    }, 2000); // toutes les 2 secondes
 }
 
 client.once("ready", () => {
     console.log(`✅ Le bot est connecté en tant que ${client.user.tag}`);
-
-    updatePresence(client);
-    setInterval(() => updatePresence(client), 5 * 60 * 1000); // Mise à jour toutes les 5 minutes
+    startPresenceCycle(client);
 });
 
 client.login(process.env.BOT_TOKEN);
