@@ -1,7 +1,6 @@
 # Astron — The Core of the Astron Suite
 
-**Astron** is the primary bot of the **Astron Collection** — a modular suite of advanced Discord applications developed by **Sky Genesis Enterprise**.  
-This bot acts as the central hub that connects users with powerful features, seamless server management, and integration with the Astron web platform.
+**Astron** is the primary bot of the **Astron Collection** — a modular suite of advanced Discord applications developed by [Sky Genesis Enterprise](https://skygenesisenterprise.com).This bot acts as the central hub that connects users with powerful features, seamless server management, and integration with the Astron web platform.
 
 ---
 
