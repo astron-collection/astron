@@ -1,41 +1,45 @@
-const { Client, GatewayIntentBits, Collection, ActivityType } = require("discord.js");
+const { Client, GatewayIntentBits, ActivityType } = require("discord.js");
 const dotenv = require("dotenv");
-const fs = require("fs");
-const path = require("path");
 
 dotenv.config();
 
 const client = new Client({
     intents: [
-        GatewayIntentBits.Guilds,               
-        GatewayIntentBits.GuildMessages,        
-        GatewayIntentBits.MessageContent,       
-        GatewayIntentBits.GuildMembers,         
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildMessageReactions,
-        GatewayIntentBits.GuildVoiceStates,     
-        GatewayIntentBits.DirectMessages,       
+        GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.DirectMessages,
         GatewayIntentBits.DirectMessageReactions,
-        GatewayIntentBits.GuildIntegrations,    
-        GatewayIntentBits.GuildPresences,       
-        GatewayIntentBits.GuildScheduledEvents, 
+        GatewayIntentBits.GuildIntegrations,
+        GatewayIntentBits.GuildPresences,
+        GatewayIntentBits.GuildScheduledEvents,
     ],
 });
 
-client.once("ready", async () => {
-    console.log(`✅ Le bot est connecté en tant que ${client.user.tag}`);
+function updatePresence(client) {
+    const guildCount = client.guilds.cache.size;
+    const userCount = client.guilds.cache.reduce((acc, guild) => acc + (guild.memberCount || 0), 0);
 
-    // Définit le statut du bot
     client.user.setPresence({
         activities: [
             {
-                name: "Sky Genesis Enterprise",
+                name: `streaming ${guildCount} servers and ${userCount} users`,
                 type: ActivityType.Streaming,
-                url: "https://www.youtube.com/watch?v=jfKfPfyJRdk"
+                url: "https://www.youtube.com/watch?v=jfKfPfyJRdk" // Obligatoire pour Streaming
             }
         ],
-        status: "online", // dnd, invisible, online, idle
+        status: "online",
     });
+}
+
+client.once("ready", () => {
+    console.log(`✅ Le bot est connecté en tant que ${client.user.tag}`);
+
+    updatePresence(client);
+    setInterval(() => updatePresence(client), 5 * 60 * 1000); // Mise à jour toutes les 5 minutes
 });
 
-// Connexion du bot
 client.login(process.env.BOT_TOKEN);
