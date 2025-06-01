@@ -42,7 +42,7 @@ function startPresenceCycle(client) {
         });
 
         toggle = !toggle;
-    }, 2000); // toutes les 2 secondes
+    }, 5000); // toutes les 5 secondes
 }
 
 client.once("ready", () => {
