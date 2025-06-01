@@ -88,9 +88,9 @@ Each bot unlocks new features on the web platform when invited.
 
 Connect Astron to the official web platform:
 
-* **Main website**: [https://astron-collection.com](https://astron-collection.com)
-* **Dashboard**: [https://dashboard.astron-collection.com](https://dashboard.astron-collection.com)
-* **API**: [https://api.astron-collection.com](https://api.astron-collection.com)
+* **Main website**: [astron-collection.com](https://astron-collection.com)
+* **Dashboard**: [dashboard.astron-collection.com](https://dashboard.astron-collection.com)
+* **API**: [api.astron-collection.com](https://api.astron-collection.com)
 
 Upon inviting Astron or any companion app, users are guided to link their Discord account via OAuth2 for secure and personalized management.
 
@@ -100,7 +100,7 @@ Upon inviting Astron or any companion app, users are guided to link their Discor
 
 Full developer documentation and API reference will be available soon at:
 
-👉 [https://docs.astron-collection.com](https://docs.astron-collection.com) *(Coming Soon)*
+👉 [Official Documentations](https://docs.astron-collection.com) *(Coming Soon)*
 
 ---
 
