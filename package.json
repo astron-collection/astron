@@ -63,6 +63,9 @@
   "homepage": "https://github.com/Sky-Genesis-Enterprise/astron#readme",
   "dependencies": {
     "discord.js": "^14.19.3",
-    "openpgp": "^6.1.1"
+    "dotenv": "^16.5.0",
+    "fs": "^0.0.1-security",
+    "openpgp": "^6.1.1",
+    "path": "^0.12.7"
   }
 }
