@@ -1,4 +1,5 @@
 // commands pour bannir un utilisateur du serveur 
+
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Permissions } = require('discord.js');
 const { getUserById } = require('../../utils/user'); // Assurez-vous que cette fonction est définie dans utils/user.js

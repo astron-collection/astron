@@ -9,6 +9,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "deploy": "node deploy-commands.cjs",
     "pr": "node scripts/pr.mjs",
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "dev:frontend": "vite --host 0.0.0.0 --port 5173",
@@ -62,10 +63,13 @@
   },
   "homepage": "https://github.com/Sky-Genesis-Enterprise/astron#readme",
   "dependencies": {
+    "@discordjs/builders": "^1.11.2",
+    "axios": "^1.9.0",
     "discord.js": "^14.19.3",
     "dotenv": "^16.5.0",
     "fs": "^0.0.1-security",
     "inquirer": "^12.6.3",
+    "node-fetch": "^3.3.2",
     "openpgp": "^6.1.1",
     "path": "^0.12.7"
   }
