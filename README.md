@@ -60,6 +60,7 @@ Create a `.env` file at the root with the following:
 
 ```env
 BOT_TOKEN=your-discord-bot-token
+CLIENT_ID=your-discord-client-id
 ```
 
 ### 4. Run the bot
