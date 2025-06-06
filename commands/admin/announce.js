@@ -1,4 +1,5 @@
 // commandes pour créer des annonces dans un salon spécifique
+
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Permissions } = require('discord.js');
 const { getChannelByName } = require('../../utils/channel'); // Assurez-vous que cette fonction est définie dans utils/channel.js   
