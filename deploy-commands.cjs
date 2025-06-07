@@ -1,40 +1,47 @@
-// script pour déployer les commandes slash sur Discord depuis le dossier commands 
+// deploy-commands.cjs
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const env = require('dotenv');
+const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
 
-const commands = []; // import des commandes 
+dotenv.config();
 
-env.config(); // import des variables d'environnement depuis le fichier .env
+const commands = [];
 
-// Lire tous les fichiers dans le dossier commands
-const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
-// Pour chaque fichier, importer le module et ajouter la commande à la liste
-for (const file of commandFiles) {
-    const command = require(`./commands/${folder}/${file}`); // Importer les sous-dossier
+// Récupération des chemins
+const commandsPath = path.join(__dirname, 'commands');
+const folders = fs.readdirSync(commandsPath);
+
+for (const folder of folders) {
+  const folderPath = path.join(commandsPath, folder);
+  const commandFiles = fs.readdirSync(folderPath).filter(file => file.endsWith('.js'));
+
+  for (const file of commandFiles) {
+    const command = require(path.join(folderPath, file));
     if (command.data && command.data.name) {
-        commands.push(command.data.toJSON());
+      commands.push(command.data.toJSON());
     } else {
-        console.warn(`Le fichier ${file} ne contient pas de commande valide.`);
+      console.warn(`⚠️ Le fichier ${file} ne contient pas de commande valide.`);
     }
+  }
 }
 
-// Créer une instance de REST
-const rest = new REST({ version: '9' }).setToken(token);
-// Déployer les commandes       
-(async () => {
-    try {
-        console.log('Début du déploiement des commandes slash...');
-        await rest.put(
-            Routes.applicationGuildCommands(clientId),
-            { body: commands },
-        );
-        console.log('Commandes slash déployées avec succès !');
-    } catch (error) {
-        console.error('Erreur lors du déploiement des commandes :', error);
-    }
-})();
+// Initialiser REST
+const rest = new REST({ version: '9' }).setToken(process.env.BOT_TOKEN);
 
-client.login(process.env.BOT_TOKEN);
+// Déploiement
+(async () => {
+  try {
+    console.log('🚀 Déploiement des commandes slash...');
+
+    await rest.put(
+      Routes.applicationCommands(process.env.CLIENT_ID),
+      { body: commands }
+    );
+
+    console.log('✅ Commandes déployées avec succès.');
+  } catch (error) {
+    console.error('❌ Erreur lors du déploiement :', error);
+  }
+})();
