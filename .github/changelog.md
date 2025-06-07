@@ -18,3 +18,9 @@
 - **Message** : Mise à jour des commandes et du README
 - **Dernière modification par** : Liam Von Astoria <hello@liamvonastoria.net>
 
+## 2025-06-07
+
+- **Branche** : feature/commands
+- **Message** : Mise à jour des commandes 
+- **Dernière modification par** : Liam Von Astoria <liam.dispa@skygenesisenterprise.com>
+
