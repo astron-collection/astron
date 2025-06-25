@@ -1,5 +1,3 @@
-// commande d'information sur le code source sur les applications Astron
-
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 
@@ -7,8 +5,15 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('info')
         .setDescription('Affiche la liste des applications Astron et leurs dépôts GitHub'),
-    
+
     async execute(interaction) {
+        // Informer Discord qu'on va répondre plus tard
+        await interaction.deferReply();
+
+        // Attendre 3 secondes
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        // Créer l'embed
         const embed = new EmbedBuilder()
             .setTitle("🌌 Astron Suite - Open Source Apps")
             .setDescription("Voici la liste des applications disponibles dans l'écosystème **Astron**, développées par Sky Genesis Enterprise.")
@@ -26,6 +31,7 @@ module.exports = {
             { name: "🌐 Dashboard Web", value: "[GitHub Repo](https://github.com/Sky-Genesis-Enterprise/astron-dashboard)" }
         );
 
-        return interaction.reply({ embeds: [embed], ephemeral: false });
+        // Répondre après le délai
+        return interaction.editReply({ embeds: [embed] });
     },
 };
