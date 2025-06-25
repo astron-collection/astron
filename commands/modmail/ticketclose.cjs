@@ -2,8 +2,6 @@
 
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
-const { getTicketByChannel } = require('../../utils/ticket'); // Assurez-vous que cette fonction est définie
-const { closeTicket } = require('../../utils/ticket'); // Assurez-vous que cette fonction est définie
 
 module.exports = {
     data: new SlashCommandBuilder()

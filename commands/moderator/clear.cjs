@@ -2,7 +2,6 @@
 
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Permissions } = require('discord.js');
-const { getChannelByName } = require('../../utils/channel'); // Assurez-vous que cette fonction est définie dans utils/channel.js
 
 module.exports = {
     data: new SlashCommandBuilder()

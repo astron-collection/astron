@@ -2,8 +2,6 @@
 
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { PermissionsBitField, EmbedBuilder } = require('discord.js');
-const { getConfig } = require('../../utils/config'); // Assurez-vous que cette fonction est définie
-const { muteUser } = require('../../utils/moderation'); // Assurez-vous que cette fonction est définie
 
 module.exports = {
     data: new SlashCommandBuilder()

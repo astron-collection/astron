@@ -1,9 +1,7 @@
 // commande pour vérouiller un salon spécifique pour empêcher les utilisateurs d'envoyer des messages
 
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { PermissionsBitField, EmbedBuilder } = require('discord.js');
-const { getChannelByName } = require('../../utils/channel'); // Assurez-vous que cette fonction est définie dans utils/channel.js
-const { getConfig, setConfig } = require('../../utils/config'); // Assurez-vous que ces fonctions sont définies dans utils/config.js    
+const { PermissionsBitField, EmbedBuilder } = require('discord.js');  
 
 module.exports = {
     data: new SlashCommandBuilder()

@@ -2,7 +2,7 @@
 
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
-const fetch = require('node-fetch');
+const fetchP = import("node-fetch");
 
 const apps = [
   { name: "Astron Protect", apiEndpoint: "https://api.astron-collection.com/protect/stats" },

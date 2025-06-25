@@ -2,8 +2,7 @@
 
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { PermissionsBitField, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const { getConfig } = require('../../utils/config'); // Assurez-vous que cette fonction est définie
-const fetch = require('node-fetch'); // Ou utilisez axios si vous préférez
+const fetchP = import("node-fetch");
 
 module.exports = {
     data: new SlashCommandBuilder()
