@@ -65,7 +65,7 @@
     "@discordjs/builders": "^1.11.2",
     "axios": "^1.9.0",
     "discord.js": "^14.19.3",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.0.0",
     "fs": "^0.0.1-security",
     "inquirer": "^12.6.3",
     "node-fetch": "^3.3.2",
