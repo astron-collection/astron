@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Permissions } = require('discord.js');
+const logger = require('../../utils/logger.cjs');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -15,40 +16,36 @@ module.exports = {
                 .setRequired(false)),
 
     async execute(interaction) {
-        console.log('↪️ Commande /ban exécutée');
+        logger.info(`↪️ /ban exécuté par ${interaction.user.tag} (${interaction.user.id}) dans ${interaction.guild.name}`);
 
         const user = interaction.options.getUser('user');
         const reason = interaction.options.getString('reason') || 'Aucune raison fournie';
 
-        console.log(`👤 Utilisateur ciblé : ${user.tag} (${user.id})`);
-        console.log(`📄 Raison : ${reason}`);
+        logger.info(`👤 Cible : ${user.tag} (${user.id}) | Raison : ${reason}`);
 
-        // Vérification des permissions du membre appelant la commande
         if (!interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
-            console.warn('⛔ Permission manquante : BAN_MEMBERS');
+            logger.warn(`⛔ ${interaction.user.tag} n'a pas la permission BAN_MEMBERS`);
             return interaction.reply({ content: 'Vous n\'avez pas la permission de bannir des membres.', ephemeral: true });
         }
 
-        // Récupération du membre dans le cache
         const member = interaction.guild.members.cache.get(user.id);
         if (!member) {
-            console.warn('❌ Membre introuvable dans le cache du serveur');
+            logger.warn(`❌ ${user.tag} introuvable dans ${interaction.guild.name}`);
             return interaction.reply({ content: 'Utilisateur non trouvé dans le serveur.', ephemeral: true });
         }
 
-        // Vérification de bannissabilité
         if (!member.bannable) {
-            console.warn('🚫 Le bot ne peut pas bannir ce membre (rôle supérieur ou non autorisé)');
+            logger.warn(`🚫 Bannissement impossible de ${user.tag} par le bot`);
             return interaction.reply({ content: 'Je ne peux pas bannir cet utilisateur (rôle supérieur ?).', ephemeral: true });
         }
 
         try {
-            console.log(`🚀 Tentative de bannissement de ${member.user.tag}...`);
+            logger.info(`🚀 Tentative de bannissement de ${user.tag}...`);
             await member.ban({ reason });
-            console.log(`✅ Bannissement réussi pour ${member.user.tag}`);
+            logger.info(`✅ ${user.tag} banni avec succès`);
             return interaction.reply({ content: `L'utilisateur ${user.tag} a été banni avec succès.`, ephemeral: true });
         } catch (error) {
-            console.error('❌ Erreur lors du bannissement :', error);
+            logger.error(`❌ Erreur lors du bannissement de ${user.tag} : ${error.message}`);
             return interaction.reply({ content: 'Erreur lors du bannissement.', ephemeral: true });
         }
     },
