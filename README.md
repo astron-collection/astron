@@ -1,143 +1,134 @@
-# Astron — The Core of the Astron Suite
+# 🚀 Astron - Discord Application Suite
 
-**Astron** is the primary bot of the **Astron Collection** — a modular suite of advanced Discord applications developed by [Sky Genesis Enterprise](https://skygenesisenterprise.com).This bot acts as the central hub that connects users with powerful features, seamless server management, and integration with the Astron web platform.
+**Astron** is a modular and extensible ecosystem designed to enhance and manage Discord communities. With a core bot and multiple plugin-based apps (such as Logger, Protect, Music, etc.), Astron provides powerful features for server administrators and moderators — accessible through a modern web dashboard.
 
----
+## 🌟 Features
 
-## 🚀 Features
+- 🌐 **Modern Web Dashboard**  
+  Manage your server with an intuitive and secure interface.
 
-Astron includes core-level features out-of-the-box:
+- 🧩 **Plugin-Based Architecture**  
+  Extend functionality with installable apps like `Logger`, `Protect`, `Music`, and more.
 
-- 🔧 **Admin Controls** — Server configuration, welcome/goodbye messages, announcements, and more.
-- 🛡 **Moderation Tools** — Kick, ban, mute, warn, and RBAC-based team delegation.
-- 📊 **Dynamic Presence** — Displays live server and user stats.
-- 🔌 **Integration Ready** — Works with optional Astron apps (Logger, Player, Modmail, Protect).
-- 🌐 **Web Dashboard Support** — Full control via `dashboard.astron-collection.com`.
+- 🔐 **Discord OAuth2 Authentication**  
+  Log in with your Discord account. Optional support for external 2FA.
 
-Astron is designed to be scalable, lightweight, and extensible through its companion bots.
+- ⚙️ **Server-Specific Configurations**  
+  Each guild can customize its setup and plugin preferences.
 
----
+- 📡 **API Intermediary**  
+  Astron includes a robust central API to handle communications between bots and dashboard clients.
 
-## 📦 Folder Structure
+## 📥 Getting Started
+
+### 1. Requirements
+
+- Node.js 18+
+- Discord bot token & app setup
+- MongoDB instance (local or Atlas)
+- [Optional] Redis, Prometheus & Grafana for monitoring
+
+### 2. Installation
 
 ```bash
-.
-├── commands/
-│   ├── admin/
-│   ├── moderator/
-│   ├── logger/       # Used when Astron Logger is installed
-│   ├── player/       # Used when Astron Player is installed
-│   ├── protect/      # Used when Astron Protect is installed
-│   └── modmail/      # Used when Modmail is enabled
-├── events/
-├── config/
-├── utils/
-└── server.js
+git clone https://github.com/astron-collection/astron
+cd astron
+pnpm install
+cp .env.example .env
 ````
 
----
+Configure your `.env` file with required variables (see [Environment](#environment)).
 
-## 🛠 Installation
+### 3. Running the App
 
-> Requires Node.js v18+ and a Discord bot token.
-
-### 1. Clone the repo
+Start the API server:
 
 ```bash
-git clone https://github.com/Sky-Genesis-Enterprise/astron.git
-cd astron
+pnpm --filter api dev
 ```
 
-### 2. Install dependencies
+Start the UI (dashboard):
 
 ```bash
-npm install
+pnpm --filter ui dev
 ```
 
-### 3. Setup `.env`
+## 🛠️ Project Structure
 
-Create a `.env` file at the root with the following:
+```
+astron/
+├── api/               # Express-based backend API
+├── ui/                # React + Vite dashboard
+├── docs/              # Developer documentation (soon)
+├── plugins/           # Plugin-based architecture for commands
+```
+
+## 🔑 Authentication & Sessions
+
+* Uses Discord OAuth2 (via `/api/auth/discord`)
+* Session tokens for dashboard access
+* Optional session-based 2FA layer (TOTP-based or email/QR validation)
+
+## 🌐 API Usage
+
+Astron provides internal endpoints for use by:
+
+* The Discord bot (command handling, state updates)
+* The web dashboard (fetching data, user actions)
+* Developer integrations (via API keys)
+
+Example:
+
+```http
+GET /api/v1/servers/:id/plugins
+Authorization: Bearer <token>
+```
+
+## 📄 Environment
+
+Example `.env.example` values:
 
 ```env
-BOT_TOKEN=your-discord-bot-token
-CLIENT_ID=your-discord-client-id
+DISCORD_CLIENT_ID=
+DISCORD_CLIENT_SECRET=
+DISCORD_BOT_TOKEN=
+API_BASE_URL=http://localhost:3001
+FRONTEND_URL=http://localhost:5173
+MONGODB_URI=
+SESSION_SECRET=
 ```
 
-### 4. Run the bot
+## 📦 Available Plugins
 
-```bash
-node server.js
-```
+| Name    | Description                           |
+| ------- | ------------------------------------- |
+| Logger  | Logs member joins/leaves, bans, edits |
+| Protect | Anti-raid & spam system               |
+| Music   | Stream music from YouTube & Spotify   |
 
----
+More coming soon. Plugin installation is available via `/plugins` command or dashboard UI.
 
-## 🔌 Optional Apps (Add-Ons)
+## 🧑‍💻 Developer Resources
 
-To enhance Astron, connect it with other apps from the Astron Collection:
+Visit: [Astron Developer Portal](https://developers.astron-collection.com)
 
-* **Astron Logger** – Full logging of server activity.
-* **Astron Player** – High-quality audio streaming.
-* **Astron Protect** – Anti-raid, anti-spam, word filters, and more.
-* **Modmail** – Seamless DM-based support system.
+* API documentation
+* SDKs and tools
+* Create your own Astron plugins
+* Get an API key and publish your app
 
-Each bot unlocks new features on the web platform when invited.
+## 📚 Wiki
 
----
+For user guides, tutorials and FAQ: [Astron Wiki Platform](https://wiki.astron-collection.com)
 
-## 🌐 Web Platform Integration
+## 💬 Support
 
-Connect Astron to the official web platform:
+If you need help, visit our [Discord Support Server](https://discord.gg/astroncollection)
 
-* **Main website**: [astron-collection.com](https://astron-collection.com)
-* **Dashboard**: [dashboard.astron-collection.com](https://dashboard.astron-collection.com)
-* **API**: [api.astron-collection.com](https://api.astron-collection.com)
+## 📘 License
 
-Upon inviting Astron or any companion app, users are guided to link their Discord account via OAuth2 for secure and personalized management.
-
----
-
-## 📘 Documentation
-
-Full developer documentation and API reference will be available soon at:
-
-👉 [Official Documentations](https://docs.astron-collection.com) *(Coming Soon)*
+Astron is released under the [AGPLv3](./LICENSE).
 
 ---
 
-## 🧠 Architecture
-
-Astron uses:
-
-* **Discord.js v14+**
-* **Node.js with TypeScript support (optional)**
-* **Modular command loader**
-* **Role-based access control (RBAC)**
-* **Webhook and API bridge support**
-
----
-
-## 🛡 Security & Philosophy
-
-The core of Astron is open-core: essential functionalities are public, but sensitive logic (tokens, DB structure, internal API endpoints) remains private. Each server gets its own isolated environment for data safety.
-
----
-
-## 🧑‍💼 Maintained by
-
-💼 [Sky Genesis Enterprise](https://skygenesisenterprise.com)
-
-If you're using Astron in production, let us know or contribute!
-
----
-
-## ❤️ Contribute
-
-We welcome feature suggestions and bug reports!
-If you'd like to contribute or develop add-ons for Astron, open a pull request or start a discussion.
-
----
-
-# 📄 License
-
-This project is licensed under the **GNU Ferero Public Licence (GPLv3 licence)**.
-You may use and extend the public logic but not redistribute closed components or proprietary APIs.
+© 2025 Astron Collection - Made with ❤️ for communities
