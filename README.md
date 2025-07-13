@@ -1,134 +1,105 @@
-# 🚀 Astron - Discord Application Suite
+# 🌌 Astron — The Modular Discord Ecosystem
 
-**Astron** is a modular and extensible ecosystem designed to enhance and manage Discord communities. With a core bot and multiple plugin-based apps (such as Logger, Protect, Music, etc.), Astron provides powerful features for server administrators and moderators — accessible through a modern web dashboard.
+**Astron** is an open-source, modular ecosystem for Discord bots, combining a flexible API, real-time server data sync, and a powerful web dashboard.
 
-## 🌟 Features
-
-- 🌐 **Modern Web Dashboard**  
-  Manage your server with an intuitive and secure interface.
-
-- 🧩 **Plugin-Based Architecture**  
-  Extend functionality with installable apps like `Logger`, `Protect`, `Music`, and more.
-
-- 🔐 **Discord OAuth2 Authentication**  
-  Log in with your Discord account. Optional support for external 2FA.
-
-- ⚙️ **Server-Specific Configurations**  
-  Each guild can customize its setup and plugin preferences.
-
-- 📡 **API Intermediary**  
-  Astron includes a robust central API to handle communications between bots and dashboard clients.
-
-## 📥 Getting Started
-
-### 1. Requirements
-
-- Node.js 18+
-- Discord bot token & app setup
-- MongoDB instance (local or Atlas)
-- [Optional] Redis, Prometheus & Grafana for monitoring
-
-### 2. Installation
-
-```bash
-git clone https://github.com/astron-collection/astron
-cd astron
-pnpm install
-cp .env.example .env
-````
-
-Configure your `.env` file with required variables (see [Environment](#environment)).
-
-### 3. Running the App
-
-Start the API server:
-
-```bash
-pnpm --filter api dev
-```
-
-Start the UI (dashboard):
-
-```bash
-pnpm --filter ui dev
-```
-
-## 🛠️ Project Structure
-
-```
-astron/
-├── api/               # Express-based backend API
-├── ui/                # React + Vite dashboard
-├── docs/              # Developer documentation (soon)
-├── plugins/           # Plugin-based architecture for commands
-```
-
-## 🔑 Authentication & Sessions
-
-* Uses Discord OAuth2 (via `/api/auth/discord`)
-* Session tokens for dashboard access
-* Optional session-based 2FA layer (TOTP-based or email/QR validation)
-
-## 🌐 API Usage
-
-Astron provides internal endpoints for use by:
-
-* The Discord bot (command handling, state updates)
-* The web dashboard (fetching data, user actions)
-* Developer integrations (via API keys)
-
-Example:
-
-```http
-GET /api/v1/servers/:id/plugins
-Authorization: Bearer <token>
-```
-
-## 📄 Environment
-
-Example `.env.example` values:
-
-```env
-DISCORD_CLIENT_ID=
-DISCORD_CLIENT_SECRET=
-DISCORD_BOT_TOKEN=
-API_BASE_URL=http://localhost:3001
-FRONTEND_URL=http://localhost:5173
-MONGODB_URI=
-SESSION_SECRET=
-```
-
-## 📦 Available Plugins
-
-| Name    | Description                           |
-| ------- | ------------------------------------- |
-| Logger  | Logs member joins/leaves, bans, edits |
-| Protect | Anti-raid & spam system               |
-| Music   | Stream music from YouTube & Spotify   |
-
-More coming soon. Plugin installation is available via `/plugins` command or dashboard UI.
-
-## 🧑‍💻 Developer Resources
-
-Visit: [Astron Developer Portal](https://developers.astron-collection.com)
-
-* API documentation
-* SDKs and tools
-* Create your own Astron plugins
-* Get an API key and publish your app
-
-## 📚 Wiki
-
-For user guides, tutorials and FAQ: [Astron Wiki Platform](https://wiki.astron-collection.com)
-
-## 💬 Support
-
-If you need help, visit our [Discord Support Server](https://discord.gg/astroncollection)
-
-## 📘 License
-
-Astron is released under the [AGPLv3](./LICENSE).
+Designed for server administrators and developers, Astron enables seamless management of Discord communities through both in-Discord commands and a rich browser interface.
 
 ---
 
-© 2025 Astron Collection - Made with ❤️ for communities
+## 🚀 Overview
+
+Astron is composed of:
+
+- 🧠 **Astron Core API** — A TypeScript/Express API layer that bridges the bots, dashboard, and plugin ecosystem.
+- 🎛️ **Web Dashboard** — Built with React, TailwindCSS, and Vite. Supports Discord OAuth2 login, 2FA, and real-time server sync.
+- 🤖 **Bot Modules** — Applications such as Moderation, Logging, Music, and more — installable and manageable from the dashboard or Discord itself.
+- 🔌 **Plugin System** — Extend functionality with a dynamic plugin manager (install/uninstall from both dashboard and Discord).
+- 🛠️ **Developer Platform** — Build plugins with SDKs for both Node.js and Python.
+- 🔒 **Security & Performance** — Hardened API using Helmet, Rate Limiting, XSS filtering, and MongoDB sanitization.
+
+---
+
+## 🌐 Features
+
+- ✅ Discord OAuth2 Login with optional 2FA
+- 🔄 Real-time synchronization of server data (members, boosts, presence, roles, etc.)
+- 📦 Plugin management via both UI and Discord commands
+- 💬 Remote execution of commands from the dashboard
+- 📊 Dashboard with dynamic UI: shows only installed apps per server
+- 🔐 Role-based access control & multi-admin server support
+- 📈 Prometheus & Grafana integration for metrics and supervision
+- 🔑 Centralized API key management with developer portal
+- 🌍 Integration with "Guild Center", a community-driven server listing platform
+
+---
+
+## 📦 Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| API | Node.js, Express, TypeScript |
+| Dashboard | React, TailwindCSS, Vite |
+| Auth | Discord OAuth2, JWT, optional 2FA |
+| Bot Framework | discord.js, plugin-based architecture |
+| Database | MongoDB |
+| Metrics | Prometheus, Grafana |
+| Dev Tools | SDKs for Node.js & Python |
+
+---
+
+## 🧩 Plugin Development
+
+Astron supports a plugin-based architecture. You can build and publish your own apps that integrate directly with Discord servers and the web dashboard.
+
+SDKs are available in:
+- **Node.js** (`astrium.js`)
+- **Python** (`astrium.py`)
+
+Plugins can define:
+- Slash Commands
+- Event Listeners
+- Dashboard Widgets
+- REST Routes (via API hooks)
+- Configuration schemas
+
+---
+
+## 🛡️ Security First
+
+Astron applies best practices for a secure and scalable ecosystem:
+
+- Helmet + Rate limiting
+- `xss-clean` and `mongo-sanitize`
+- Scoped API access
+- Guild-specific permissions and plugin sandboxing
+
+---
+
+## 📚 Documentation
+
+Comprehensive documentation (coming soon) will be available at:
+
+👉 [Wiki Project](https://wiki.astron-collection.com)
+
+---
+
+## 🧪 Contribute
+
+We welcome contributions from the community!
+
+- 🔧 Build plugins
+- 🐛 Fix issues
+- 📝 Improve documentation
+- 🎨 Suggest UX/UI improvements
+
+Join our [Discord Community](https://discord.gg/WfC7EFahMf) to get involved!
+
+---
+
+## 📜 License
+
+Astron is open-source and released under the MIT License.
+
+---
+
+## 🌠 Project by [Astron Collection](https://astron-collection.com)
