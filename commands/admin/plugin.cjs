@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { PermissionsBitField } = require('discord.js');
-const fetch = require('node-fetch');
 
 const ASTRON_API_URL = process.env.ASTRON_API_URL || 'https://api.astron-collection.com';
 const API_KEY = process.env.ASTRON_API_KEY;
