@@ -9,7 +9,7 @@ Security is a top priority for us. We are committed to maintaining the security 
 If you discover a security vulnerability, we encourage you to report it to us privately so we can take appropriate action before making the details publicly known. Public disclosure of vulnerabilities can put users at risk, so we ask that vulnerabilities be disclosed responsibly.
 
 ### How to report a vulnerability:
-- Send an email to our dedicated security team at **security@skygenesisenterprise.com**.
+- Send an email to our dedicated security team at **security@astron-collection.com**.
 - Include a detailed description of the vulnerability, including steps to reproduce it if applicable.
 - We also appreciate information on any potential patches or mitigation strategies you may have.
 
