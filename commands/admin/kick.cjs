@@ -25,6 +25,9 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers),
 
     async execute(interaction) {
+        // Diffère la réponse pour montrer que le bot réfléchit
+        await interaction.deferReply({ ephemeral: true });
+
         const user = interaction.options.getUser('user');
         const reason = interaction.options.getString('reason') || 'Aucune raison fournie';
 
@@ -33,21 +36,21 @@ module.exports = {
 
         if (cooldown && now - cooldown < 30_000) {
             const timeLeft = Math.ceil((30_000 - (now - cooldown)) / 1000);
-            return interaction.reply({ content: `⏳ Tu dois attendre encore ${timeLeft} seconde(s) avant de réutiliser cette commande.`, ephemeral: true });
+            return interaction.editReply({ content: `⏳ Tu dois attendre encore ${timeLeft} seconde(s) avant de réutiliser cette commande.` });
         }
 
         // Vérifie si le membre ciblé est bien sur le serveur
         const member = await interaction.guild.members.fetch(user.id).catch(() => null);
         if (!member) {
-            return interaction.reply({ content: '❌ L\'utilisateur n\'est pas sur ce serveur.', ephemeral: true });
+            return interaction.editReply({ content: '❌ L\'utilisateur n\'est pas sur ce serveur.' });
         }
 
         if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.KickMembers)) {
-            return interaction.reply({ content: '❌ Je n\'ai pas la permission d\'expulser des membres.', ephemeral: true });
+            return interaction.editReply({ content: '❌ Je n\'ai pas la permission d\'expulser des membres.' });
         }
 
         if (!member.kickable) {
-            return interaction.reply({ content: '❌ Je ne peux pas expulser cet utilisateur (rôle trop élevé ?).', ephemeral: true });
+            return interaction.editReply({ content: '❌ Je ne peux pas expulser cet utilisateur (rôle trop élevé ?).' });
         }
 
         // Créer les boutons de confirmation
@@ -62,12 +65,13 @@ module.exports = {
                 .setStyle(ButtonStyle.Secondary)
         );
 
-        await interaction.reply({
+        // Affiche la demande de confirmation (en remplaçant le "thinking")
+        await interaction.editReply({
             content: `❗ Veux-tu vraiment expulser **${user.tag}** ?`,
-            components: [row],
-            ephemeral: true
+            components: [row]
         });
 
+        // Collecteur de clic sur boutons
         const collector = interaction.channel.createMessageComponentCollector({
             componentType: ComponentType.Button,
             time: 15_000,
@@ -95,7 +99,7 @@ module.exports = {
                 if (logChannel) {
                     logChannel.send({
                         content: `👢 **${user.tag}** a été expulsé par **${interaction.user.tag}**\n📄 Raison : ${reason}`
-                    });
+                    }).catch(console.error);
                 }
             } catch (error) {
                 console.error('Erreur lors de l\'expulsion :', error);
@@ -105,7 +109,7 @@ module.exports = {
 
         collector.on('end', collected => {
             if (collected.size === 0) {
-                interaction.editReply({ content: '⏱️ Temps écoulé. Expulsion annulée.', components: [] });
+                interaction.editReply({ content: '⏱️ Temps écoulé. Expulsion annulée.', components: [] }).catch(() => {});
             }
         });
     },
