@@ -71,14 +71,14 @@ module.exports = {
                 .setStyle(ButtonStyle.Secondary)
         );
 
-        // Affiche la demande de confirmation (en remplaçant le "thinking")
-        await interaction.editReply({
+        // Affiche la demande de confirmation et récupère le message
+        const confirmationMessage = await interaction.editReply({
             content: `❗ Veux-tu vraiment expulser **${user.tag}** ?`,
             components: [row]
         });
 
-        // Collecteur de clic sur boutons
-        const collector = interaction.channel.createMessageComponentCollector({
+        // Créer un collecteur sur le message de confirmation
+        const collector = confirmationMessage.createMessageComponentCollector({
             componentType: ComponentType.Button,
             time: 15_000,
             max: 1
@@ -115,7 +115,7 @@ module.exports = {
 
         collector.on('end', collected => {
             if (collected.size === 0) {
-                interaction.editReply({ content: '⏱️ Temps écoulé. Expulsion annulée.', components: [] }).catch(() => {});
+                confirmationMessage.edit({ content: '⏱️ Temps écoulé. Expulsion annulée.', components: [] }).catch(() => { });
             }
         });
     },
