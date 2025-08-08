@@ -25,6 +25,11 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers),
 
     async execute(interaction) {
+        // Vérifie que la commande est utilisée dans un serveur
+        if (!interaction.inGuild()) {
+            return interaction.reply({ content: '❌ Cette commande doit être utilisée dans un serveur.', ephemeral: true });
+        }
+
         // Diffère la réponse pour montrer que le bot réfléchit
         await interaction.deferReply({ ephemeral: true });
 
@@ -45,6 +50,7 @@ module.exports = {
             return interaction.editReply({ content: '❌ L\'utilisateur n\'est pas sur ce serveur.' });
         }
 
+        // Vérifie les permissions du bot
         if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.KickMembers)) {
             return interaction.editReply({ content: '❌ Je n\'ai pas la permission d\'expulser des membres.' });
         }
