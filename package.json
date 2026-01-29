@@ -68,7 +68,7 @@
     "dotenv": "^17.0.1",
     "fs": "^0.0.1-security",
     "husky": "^9.1.7",
-    "inquirer": "^12.6.3",
+    "inquirer": "^13.2.2",
     "node-fetch": "^3.3.2",
     "openpgp": "^6.1.1",
     "path": "^0.12.7",
