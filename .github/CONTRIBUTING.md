@@ -1,23 +1,27 @@
-# Contributing to Astron
+### 📄 `CONTRIBUTING.md`
 
-Thank you for your interest in contributing to **Astron**!  
-This project is maintained by [Sky Genesis Enterprise](https://skygenesisenterprise.com), and we greatly value community input and collaboration.
+# Contributing to Aether Mailer
+
+Thank you for your interest in contributing to **Aether Mailer**!  
+We welcome community contributions and feedback, while the project is also maintained and developed by [Sky Genesis Enterprise](https://skygenesisenterprise.com).
 
 ---
 
 ## 📦 About the Project
 
-**Astron** is a modular and extensible open-source Discord application suite built with TypeScript and [Discord.js](https://discord.js.org/).  
-It includes tools for moderation, logging, music playback, bot protection, modmail support, and more.
+**Aether Mailer** is an open-source email client licensed under **MIT Licence**, with both:
 
-The core is open-sourced under **AGPLv3**, while advanced features and APIs are available via a commercial license through the **Astron Collection**.
+- A **free and self-hostable version** for the open-source community
+- A **commercial edition** with additional features and premium support maintained by Sky Genesis Enterprise
+
+We value collaboration and are happy to accept pull requests, bug reports, and feature suggestions from the community.
 
 ---
 
 ## 🧭 Code of Conduct
 
-We follow a [Code of Conduct](https://github.com/Sky-Genesis-Enterprise/astron/CODE_OF_CONDUCT.md) to ensure respectful and inclusive collaboration.  
-Please read and follow it before making any contributions.
+We follow a [Code of Conduct](https://github.com/skygenesisenterprise/aether-mailer/CODE_OF_CONDUCT.md) to ensure a safe, respectful, and inclusive environment.  
+Please make sure you read and respect it before contributing.
 
 ---
 
@@ -25,36 +29,34 @@ Please read and follow it before making any contributions.
 
 ### 1. Fork the Repository
 
-Create a fork of the repo and clone it locally:
+Use the GitHub UI to create a fork, then clone it locally:
 
 ```bash
-git clone https://github.com/Sky-Genesis-Enterprise/astron.git
-cd astron
-````
+git clone https://github.com/skygenesisenterprise/aether-mailer.git
+cd aether-mailer
+```
+
+### 2. Set Up Locally
+
+Install dependencies and run the development server (example for TypeScript/Node):
+
+```bash
+pnpm install
+pnpm run dev
+```
+
+> See [README.md](./README.md) for platform-specific setup instructions.
 
 ---
 
-### 2. Set Up the Project Locally
+### 3. Create a Feature or Fix Branch
 
-Install the dependencies and run the dev environment:
-
-```bash
-npm install
-npm run dev
-```
-
-> For platform-specific instructions, refer to [README.md](../README.md)
-
----
-
-### 3. Use a Clear Branch Naming Convention
-
-Use prefixes to clarify the purpose of your work:
+Follow the naming convention:
 
 ```
-feature/add-dashboard-sync
-fix/role-permissions-error
-docs/update-api-reference
+fix/bug-title
+feature/new-feature-name
+docs/update-docs-section
 ```
 
 ```bash
@@ -63,51 +65,50 @@ git checkout -b feature/your-feature
 
 ---
 
-### 4. Write Clean, Tested Code
+### 4. Make Your Changes
 
-* Follow the TypeScript conventions and code style (ESLint + Prettier)
-* Include comments and documentation where helpful
-* Add tests where applicable (especially for shared modules)
+Follow the coding standards and linting rules (we use ESLint + Prettier).
+Please write tests if applicable, and update documentation when necessary.
 
 ---
 
-### 5. Test Before Submitting
+### 5. Run Tests
 
-Run all tests to verify nothing breaks:
+Ensure your code doesn’t break existing functionality:
 
 ```bash
-npm test
+pnpm test
 ```
 
 ---
 
-### 6. Open a Pull Request
+### 6. Submit a Pull Request
 
-Once your work is ready, push your changes and open a Pull Request on GitHub:
+Push to your fork and open a Pull Request via the GitHub UI.
 
-* Use the [Pull Request Template](./.github/PULL_REQUEST_TEMPLATE.md)
-* Link to relevant issues (e.g. `Fixes #45`)
-* Describe your changes clearly and concisely
-
----
-
-## 🧠 Where You Can Help
-
-We welcome contributions in many areas:
-
-* ✨ New features for the bots or dashboard
-* 🐞 Bug fixes or stability improvements
-* 📝 Improving documentation or developer experience
-* ⚙️ Performance and scalability improvements
-* 💬 UX/UI suggestions for the web platform
-
-> Final decisions regarding roadmap and project direction are made by the core team at Sky Genesis Enterprise.
+* Use the provided [Pull Request Template](./.github/PULL_REQUEST_TEMPLATE.md)
+* Link to relevant issues if applicable (e.g., `Closes #123`)
+* Our team will review your contribution — we may request changes
 
 ---
 
-## 📩 Questions or Feedback?
+## 🧠 Contribution Scope
 
-Open a [GitHub Discussion](https://github.com/Sky-Genesis-Enterprise/astron/discussions)
-Or contact us directly: [contact@skygenesisenterprise.com](mailto:contact@skygenesisenterprise.com)
+You may contribute in the following areas:
 
-Thanks for contributing to **Astron** 🚀
+* ✨ New features (frontend or backend)
+* 🐛 Bug fixes
+* 📝 Documentation improvements
+* ⚙️ Dev tooling, performance, testing
+* 💬 Discussions and ideas
+
+Please note that **final decisions regarding project direction, architecture, and priorities are made by Sky Genesis Enterprise.**
+
+---
+
+## 📩 Questions or Suggestions?
+
+Open a [GitHub Discussion](https://github.com/skygenesisenterprise/aether-mailer/discussions)
+Or reach out to us at [contact@skygenesisenterprise.com](mailto:contact@skygenesisenterprise.com)
+
+Thank you for helping improve Aether Mailer 💌
