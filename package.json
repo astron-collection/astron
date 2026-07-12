@@ -63,7 +63,7 @@
   "packageManager": "pnpm@9.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/skygenesisenterprise/discord-enterprise.git"
+    "url": "https://github.com/astron-collection/astron.git"
   },
   "keywords": [
     "mail-server",
@@ -79,15 +79,15 @@
     "workspace"
   ],
   "author": {
-    "name": "Sky Genesis Enterprise",
-    "email": "developer@skygenesisenterprise.com",
-    "url": "https://skygenesisenterprise.com"
+    "name": "Astron Collection",
+    "email": "developer@astron-collection.com",
+    "url": "https://astron-collection.com"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/skygenesisenterprise/discord-enterprise/issues"
+    "url": "https://github.com/astron-collection/astron/issues"
   },
-  "homepage": "https://github.com/skygenesisenterprise/discord-enterprise#readme",
+  "homepage": "https://github.com/astron-collection/astron#readme",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",

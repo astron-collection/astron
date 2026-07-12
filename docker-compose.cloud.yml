@@ -55,7 +55,7 @@ services:
       dockerfile: Dockerfile.cloud
       args:
         DATABASE_URL: postgresql://${PG_USER:-postgres}:${PG_PASS:-postgres}@postgresql:5432/${PG_DB:-postgres}
-    image: skygenesisenterprise/discord-enterprise:${APP_IMAGE_TAG:-cloud}
+    image: astron-collection/astron:${APP_IMAGE_TAG:-cloud}
     restart: unless-stopped
     env_file:
       - .env
@@ -83,7 +83,7 @@ services:
       REDIS_PASSWORD: ${REDIS_PASSWORD:-redis-default-password}
       REDIS_DB: "0"
       REDIS_URL: redis://default:${REDIS_PASSWORD:-redis-default-password}@redis:6379/0
-      REDIS_KEY_PREFIX: discord-enterprise:v1
+      REDIS_KEY_PREFIX: astron:v1
       REDIS_DEFAULT_TTL: "300"
     depends_on:
       postgresql:
@@ -113,7 +113,7 @@ services:
       dockerfile: Dockerfile.cloud
       args:
         DATABASE_URL: postgresql://${PG_USER:-postgres}:${PG_PASS:-postgres}@postgresql:5432/${PG_DB:-postgres}
-    image: skygenesisenterprise/discord-enterprise:${APP_IMAGE_TAG:-cloud}
+    image: astron-collection/astron:${APP_IMAGE_TAG:-cloud}
     restart: unless-stopped
     env_file:
       - .env
@@ -138,7 +138,7 @@ services:
       REDIS_PASSWORD: ${REDIS_PASSWORD:-redis-default-password}
       REDIS_DB: "0"
       REDIS_URL: redis://default:${REDIS_PASSWORD:-redis-default-password}@redis:6379/0
-      REDIS_KEY_PREFIX: discord-enterprise:v1
+      REDIS_KEY_PREFIX: astron:v1
     depends_on:
       postgresql:
         condition: service_healthy
@@ -167,7 +167,7 @@ services:
       dockerfile: Dockerfile.cloud
       args:
         DATABASE_URL: postgresql://${PG_USER:-postgres}:${PG_PASS:-postgres}@postgresql:5432/${PG_DB:-postgres}
-    image: skygenesisenterprise/discord-enterprise:${APP_IMAGE_TAG:-cloud}
+    image: astron-collection/astron:${APP_IMAGE_TAG:-cloud}
     restart: unless-stopped
     env_file:
       - .env
@@ -189,7 +189,7 @@ services:
       REDIS_PASSWORD: ${REDIS_PASSWORD:-redis-default-password}
       REDIS_DB: "0"
       REDIS_URL: redis://default:${REDIS_PASSWORD:-redis-default-password}@redis:6379/0
-      REDIS_KEY_PREFIX: discord-enterprise:v1
+      REDIS_KEY_PREFIX: astron:v1
     depends_on:
       postgresql:
         condition: service_healthy

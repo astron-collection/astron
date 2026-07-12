@@ -1,5 +1,5 @@
 {
-  "name": "@discord-enterprise/app",
+  "name": "@astron/app",
   "version": "1.0.0",
   "description": "Frontend application for Company Website",
   "private": true,

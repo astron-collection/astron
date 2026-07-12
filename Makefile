@@ -1,6 +1,6 @@
 .PHONY: help build-dev build-cloud run-dev run-cloud stop clean prune rmi-dev dev-up dev-down dev-logs dev-rebuild dev-restart cloud-up cloud-down cloud-logs cloud-rebuild rmi-cloud
 
-APP_IMAGE := skygenesisenterprise/discord-enterprise
+APP_IMAGE := astron-collection/astron
 DEV_IMAGE_TAG := latest
 CLOUD_IMAGE_TAG := cloud
 DEV_COMPOSE := docker-compose.dev.yml

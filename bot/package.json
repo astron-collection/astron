@@ -1,5 +1,5 @@
 {
-  "name": "@discord-enterprise/bot",
+  "name": "@astron/bot",
   "version": "1.1.0",
   "private": true,
   "type": "module",
