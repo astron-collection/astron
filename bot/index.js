@@ -55,7 +55,19 @@ async function loadEvents() {
   }
 }
 
-async function bootstrap() {
+const MAX_RETRIES = 10;
+const BASE_DELAY_MS = 5_000;
+const MAX_DELAY_MS = 300_000;
+
+function isRetryable(error) {
+  return error?.code === "EAI_AGAIN" || error?.code === "ENOTFOUND" || error?.code === "ECONNRESET";
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function bootstrap(attempt = 1) {
   try {
     if (!env.isConfigured) {
       console.warn(`[WARN] Discord bot config incomplete. Missing: ${env.missingRequiredVars.join(", ")}`);
@@ -66,6 +78,12 @@ async function bootstrap() {
     await loadEvents();
     await client.login(env.token);
   } catch (error) {
+    if (isRetryable(error) && attempt < MAX_RETRIES) {
+      const delay = Math.min(BASE_DELAY_MS * 2 ** (attempt - 1), MAX_DELAY_MS);
+      console.warn(`[RETRY] Erreur réseau (tentative ${attempt}/${MAX_RETRIES}): ${error.code}. Reconnexion dans ${Math.round(delay / 1000)}s...`);
+      await sleep(delay);
+      return bootstrap(attempt + 1);
+    }
     console.error("Échec du démarrage du bot:", error);
     process.exit(1);
   }
