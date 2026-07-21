@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@loglayer/transport-pino':
-        specifier: ^2.2.16
-        version: 2.2.16(pino@10.3.1)
+        specifier: ^3.3.0
+        version: 3.3.0(pino@10.3.1)
       '@prisma/client':
         specifier: ^7.8.0
         version: 7.8.0(prisma@7.2.0(@types/react@19.2.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(typescript@5.9.3)
@@ -303,14 +303,22 @@ packages:
     resolution: {integrity: sha512-HSqb/vF1I0TteulEPbfU5qBYuv3xRTOYJlWttNBNqR4XU8sqxw/0azqDuGsfr4J8aJTD018jJz09OrkrA8xoOw==}
     engines: {node: '>=18'}
 
-  '@loglayer/transport-pino@2.2.16':
-    resolution: {integrity: sha512-VMukURdx2KhNb94qI2OwqMMvyABpIfVCgeNwlUPe47eI23bWDlqVK+cJk6XJIxAVsb4Qixuku55YuTVihvq6dA==}
+  '@loglayer/shared@4.4.0':
+    resolution: {integrity: sha512-9C6zpO9RXjfjddR+Bbk+h5NiLDL2wNlno5jLplzhw+Jaj2gO2Dv53rxrgdRmBP5/DgSHNCZu6FdOq8ankSYdGA==}
+    engines: {node: '>=18'}
+
+  '@loglayer/transport-pino@3.3.0':
+    resolution: {integrity: sha512-nCWQtkgQkF/mN2R91IKKM8byJgsk2eJg96Jq0X4wlffts5WdLJKfM27wUXKczH8tF2qEcOzTcoo0LpPGG466uw==}
     engines: {node: '>=18'}
     peerDependencies:
       pino: '*'
 
   '@loglayer/transport@2.3.12':
     resolution: {integrity: sha512-fnGRWGBRaO1yqhE8TXob0D42qWjihmpVCyP0nyyFYE6LibugvwScEvDW+w9xLlXunLbvCR0eYmzhdcF8ksVTYw==}
+    engines: {node: '>=18'}
+
+  '@loglayer/transport@3.3.0':
+    resolution: {integrity: sha512-fFh4XaX24FiyZtpzOjBP2PScA3sQk1rfka287FsYXkGMm2/n74BOVj6/D/oLaiI+cJMy7fv3dtyy5sUtNil5UQ==}
     engines: {node: '>=18'}
 
   '@manypkg/find-root@1.1.0':
@@ -2021,14 +2029,20 @@ snapshots:
 
   '@loglayer/shared@3.2.0': {}
 
-  '@loglayer/transport-pino@2.2.16(pino@10.3.1)':
+  '@loglayer/shared@4.4.0': {}
+
+  '@loglayer/transport-pino@3.3.0(pino@10.3.1)':
     dependencies:
-      '@loglayer/transport': 2.3.12
+      '@loglayer/transport': 3.3.0
       pino: 10.3.1
 
   '@loglayer/transport@2.3.12':
     dependencies:
       '@loglayer/shared': 3.2.0
+
+  '@loglayer/transport@3.3.0':
+    dependencies:
+      '@loglayer/shared': 4.4.0
 
   '@manypkg/find-root@1.1.0':
     dependencies:
